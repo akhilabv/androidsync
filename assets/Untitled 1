@@ -1,0 +1,25 @@
+void httpcall() throws ClientProtocolException, IOException
+	{
+		httpc  = new DecompressingHttpClient(new DefaultHttpClient());
+		tv=(TextView) findViewById(R.id.textView2);
+		String url = "http://nammaapp.in/namma7817/scripts7817/test.php";
+		HttpPost httppost = new HttpPost(url);
+		httppost.setHeader("Connection", "keep-alive");
+		//setting the header of the content-type (in MIME representation) of the data i am sending on this POST request
+		httppost.setHeader("Content-Type", "application/xml");
+		
+		httppost.setEntity(new StringEntity("abc"));
+		HttpResponse resp = null;
+		//executing the request
+		resp = httpc.execute(httppost);
+		BufferedReader br = new BufferedReader(new InputStreamReader(resp.getEntity().getContent(),"UTF-8"));
+		String htmltext = new String();
+		String str;
+		while ((str = br.readLine()) != null) { 
+			htmltext +=str;
+		}
+
+		tv.setText(htmltext);
+
+		
+	}
