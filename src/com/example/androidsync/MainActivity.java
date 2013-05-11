@@ -18,6 +18,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
@@ -77,12 +78,15 @@ private HttpPost httppost = new HttpPost("http://nammaapp.in/namma7817/scripts78
 			public void onClick(View arg)
 			{
 				
+				Intent i = new Intent(MainActivity.this,Async.class);
+				startActivity(i);
+				
 				try
 				{
 				//new DownloadWebPageTask().execute();
 					db = myDbHelper.getWritableDatabase();
-					
-				httpcall();
+					db.close();
+				//httpcall();
 				}
 				catch(Exception e)
 				{
